@@ -78,6 +78,13 @@ ADD https://github.com/ffmpegwasm/vorbis.git#$VORBIS_BRANCH /src
 COPY build/vorbis.sh /src/build.sh
 RUN bash -x /src/build.sh
 
+# Build zlib
+FROM emsdk-base AS zlib-builder
+ENV ZLIB_BRANCH=v1.2.11
+ADD https://github.com/ffmpegwasm/zlib.git#$ZLIB_BRANCH /src
+COPY build/zlib.sh /src/build.sh
+RUN bash -x /src/build.sh
+
 
 # Base ffmpeg image with dependencies and source code populated.
 FROM emsdk-base AS ffmpeg-base
@@ -90,6 +97,7 @@ COPY --from=lame-builder $INSTALL_DIR $INSTALL_DIR
 COPY --from=opus-builder $INSTALL_DIR $INSTALL_DIR
 COPY --from=theora-builder $INSTALL_DIR $INSTALL_DIR
 COPY --from=vorbis-builder $INSTALL_DIR $INSTALL_DIR
+COPY --from=zlib-builder $INSTALL_DIR $INSTALL_DIR
 
 # Build ffmpeg
 FROM ffmpeg-base AS ffmpeg-builder
