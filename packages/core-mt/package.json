@@ -1,5 +1,5 @@
 {
-  "name": "@ffmpeg/core-mt",
+  "name": "@clipship/ffmpeg-core-mt",
   "version": "0.12.10",
   "description": "FFmpeg WebAssembly version (multi thread)",
   "main": "./dist/umd/ffmpeg-core.js",
@@ -22,7 +22,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ffmpegwasm/ffmpeg.wasm.git"
+    "url": "git+https://github.com/clipship/ffmpeg.wasm.git"
   },
   "keywords": [
     "ffmpeg",
@@ -41,6 +41,7 @@
   },
   "homepage": "https://github.com/ffmpegwasm/ffmpeg.wasm#readme",
   "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
     "access": "public"
   }
 }
